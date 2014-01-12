@@ -39,7 +39,7 @@ void Draw()
              glColor3f(0.0, 1.0, 0.0);
              glVertex2i(680, 250);
 
-         glEnd();
+          glEnd();
          //perekladina
          glBegin(GL_LINE_LOOP);
               
