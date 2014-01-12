@@ -83,7 +83,7 @@ void Draw()
               glColor3f(0.0, 0.0, 0.0);
               glVertex2i(-25, -250);
  
-          glEnd();
+        glEnd();
 
 		 
 
@@ -102,7 +102,45 @@ void Draw()
 		 glColor3f(0.0, 0.0, 0.0);                       //koleso vid pushki 
          drawCircle(-700, -307, 30,60);
       
-		 //misha *** 
+		  //Pidloga
+         glBegin(GL_LINE_LOOP);
+	      glColor3f(0.0, 0.0, 0.0);
+              glVertex2i(-999, -460);
+              glColor3f(0.0, 0.0, 0.0);
+              glVertex2i(-999, -499);
+              glColor3f(0.0, 0.0, 0.0);
+              glVertex2i(999, -499);
+              glColor3f(0.0, 0.0, 0.0);
+              glVertex2i(999,-460 );
+         glEnd();
+		 //lovyshka 1
+         glBegin(GL_QUADS);
+	      glColor3f(1.0, 0.0, 0.0);
+              glVertex2i(445, -200);
+              glColor3f(1.0, 0.0, 0.0);
+              glVertex2i(445, -460);
+              glColor3f(1.0, 0.0, 0.0);
+              glVertex2i(480, -460);
+              glColor3f(1.0, 0.0, 0.0);
+              glVertex2i(480,-200 );
+         glEnd();
+		 //lovyshka 2
+         glBegin(GL_QUADS);
+	      glColor3f(1.0, 0.0, 0.0);
+              glVertex2i(195, -200);
+              glColor3f(1.0, 0.0, 0.0);
+              glVertex2i(195, -460);
+              glColor3f(1.0, 0.0, 0.0);
+              glVertex2i(230, -460);
+              glColor3f(1.0, 0.0, 0.0);
+              glVertex2i(230,-200 );
+         glEnd();     
+         glBegin(GL_LINE_LOOP);
+                glVertex2i(335, -400);  
+                glVertex2i(295,-460);  
+                glVertex2i(375,-460);  
+         glEnd();
+		 
 		  glFlush();		     
 }
 
