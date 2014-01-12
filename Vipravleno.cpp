@@ -102,7 +102,7 @@ void Draw()
 		 glColor3f(0.0, 0.0, 0.0);                       //koleso vid pushki 
          drawCircle(-700, -307, 30,60);
       
-		  
+		 //misha *** 
 		  glFlush();		     
 }
 
