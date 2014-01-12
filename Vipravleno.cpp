@@ -28,12 +28,12 @@ void Draw()
 {
      glClear(GL_COLOR_BUFFER_BIT);
          glColor3f(0.0, 0.0, 0.0);
-         //Steklyashka
+         //Opora
          glBegin(GL_QUADS);
              glColor3f(0.0, 1.0, 0.0);
-             glVertex2i(680, -500);
+             glVertex2i(680, -460);
              glColor3f(0.0, 1.0, 0.0);
-             glVertex2i(700, -500);
+             glVertex2i(700, -460);
              glColor3f(0.0, 1.0, 0.0);
              glVertex2i(700, 250);
              glColor3f(0.0, 1.0, 0.0);
@@ -59,9 +59,9 @@ void Draw()
          glBegin(GL_LINE_LOOP);
                  
              glColor3f(0.0, 0.0, 0.0);
-             glVertex2i(680, -500);
+             glVertex2i(680, -460);
              glColor3f(0.0, 0.0, 0.0);
-             glVertex2i(700, -500);
+             glVertex2i(700, -460);
              glColor3f(0.0, 0.0, 0.0);
              glVertex2i(700, 250);
              glColor3f(0.0, 0.0, 0.0);
