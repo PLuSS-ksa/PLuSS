@@ -161,46 +161,42 @@ void Draw()
         glEnd();
 
 		//steklyannaya plastina
-glBegin(GL_QUADS);
-glColor3f(0.0, 1.0, 0.0);
-glVertex2i(350, 500);
-glColor3f(0.0, 1.0, 0.0);
-glVertex2i(370, 500);
-glColor3f(0.0, 1.0, 0.0);
-glVertex2i(370, 200);
-glColor3f(0.0, 1.0, 0.0);
-glVertex2i(350, 200);
-glEnd();
+       glBegin(GL_QUADS);
+               glColor3f(0.0, 1.0, 0.0);
+               glVertex2i(350, 500);
+               glColor3f(0.0, 1.0, 0.0);
+               glVertex2i(370, 500);
+               glColor3f(0.0, 1.0, 0.0);
+               glVertex2i(370, 200);
+               glColor3f(0.0, 1.0, 0.0);
+               glVertex2i(350, 200);
+       glEnd();
 
-glEnable(GL_LINE_STIPPLE);
-glLineStipple(1,0x00FF);
-glBegin(GL_LINE_LOOP);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(350, 500);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(370, 500);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(370, 200);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(350, 200);
-glEnd();
-glDisable(GL_LINE_STIPPLE);
-//pidvis
-glBegin(GL_QUADS);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(200, 180);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(200, 200);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(520, 200);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(520, 180);
-glEnd();
+       glEnable(GL_LINE_STIPPLE);
+               glLineStipple(1,0x00FF);
+               glBegin(GL_LINE_LOOP);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(350, 500);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(370, 500);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(370, 200);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(350, 200);
+       glEnd();
+       glDisable(GL_LINE_STIPPLE);
+       //pidvis
+       glBegin(GL_QUADS);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(200, 180);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(200, 200);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(520, 200);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(520, 180);
+       glEnd();
 
-
-
-      
-                 
 
 glFlush();                     
 }
