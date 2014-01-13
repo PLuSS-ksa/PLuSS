@@ -139,32 +139,32 @@ void Draw()
                 glVertex2i(295,-460);  
                 glVertex2i(375,-460);  
         glEnd();
-		glBegin(GL_LINE_STRIP); //каряве півколо
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(-770, -400);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(-775, -398);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(-779, -395);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(-782, -391);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(-784, -386);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(-782, -381);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(-779, -377);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(-775, -374);
-glColor3f(0.0, 0.0, 0.0);
-glVertex2i(-770, -372);
-glEnd();
+        glBegin(GL_LINE_STRIP); //"kariave" pivkolo
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(-770, -400);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(-775, -398);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(-779, -395);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(-782, -391);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(-784, -386);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(-782, -381);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(-779, -377);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(-775, -374);
+               glColor3f(0.0, 0.0, 0.0);
+               glVertex2i(-770, -372);
+        glEnd();
 
 
       
 		 
 
-		  glFlush();		     
+glFlush();		     
 }
 
 void Initialize()
