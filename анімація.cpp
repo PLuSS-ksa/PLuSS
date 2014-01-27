@@ -1,8 +1,9 @@
-#include "stdafx.h"
-#include <gl/glut.h>
+#include "glut.h"
+#include <cmath>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <cmath>
+#include <math.h>
 
 
 
@@ -21,8 +22,16 @@ float gfDeltaX3=0.3;
 float gfDeltaY3=0.2;
 float gfRotZ= 0;
 float gfDeltaZ=0.05;
-
-
+float gfx=285;
+float mrt=20;     //kyt
+float gfPyshkaX=185;
+float gfPyshkaY=44;
+float gfDeltaX1=cos(mrt*0.017);
+float gfDeltaY1=sin(mrt*0.017);
+float gfDeltaX4=-cos(mrt*0.017);     //zmichenn9 v livo garmatu
+float gfPyshkaX1;
+float gfDeltaY4=sin(mrt*0.017);     //zmichenn9 v livo garmatu
+float gfPyshkaY1;
 // dlya s4itivaniya s klavi float mrt;
 
 
@@ -44,41 +53,43 @@ void drawCircle(float x, float y, float r, int amountSegments)
 }
 void Garmata()
 {
-	 glBegin(GL_LINE_STRIP); //"kariave" pivkolo
-               glColor3f(0.0, 0.0, 0.0);
-               glVertex2i(-70, 30);
-               glColor3f(0.0, 0.0, 0.0);
-               glVertex2i(-75, 32);
-               glColor3f(0.0, 0.0, 0.0);
-               glVertex2i(-79, 35);
-               glColor3f(0.0, 0.0, 0.0);
-               glVertex2i(-82, 39);
-               glColor3f(0.0, 0.0, 0.0);
-               glVertex2i(-84, 44);
-               glColor3f(0.0, 0.0, 0.0);
-               glVertex2i(-82, 49);
-               glColor3f(0.0, 0.0, 0.0);
-               glVertex2i(-79, 53);
-               glColor3f(0.0, 0.0, 0.0);
-               glVertex2i(-75, 56);
-               glColor3f(0.0, 0.0, 0.0);
-               glVertex2i(-70, 58);
-        glEnd(); 
-	//Garmata
-        glBegin(GL_LINE_STRIP);                     
+	  //jadro
+   
+    glColor3f(0.0, 0.0, 0.0);                     
+    drawCircle( gfPyshkaX, gfPyshkaY, 14,60);
+
+    glEnd();
+		//kinec garmatu
+		    glColor3f(0.0, 0.0, 0.0);                     
+			drawCircle( -70+gfPyshkaX1, 44+gfPyshkaY1, 14,60);
+			glEnd();
+		 
+        //Garmata zamalovka
+		  glBegin(GL_QUADS);                     
+             glColor3f(1.0, 1.0, 1.0);
+              glVertex2i(-70+gfPyshkaX1, 30+gfPyshkaY1);
+             glColor3f(1.0, 1.0, 1.0);
+              glVertex2i(200+gfPyshkaX1, 30+gfPyshkaY1);
+              glColor3f(1.0, 1.0, 1.0);
+              glVertex2i(200+gfPyshkaX1, 58+gfPyshkaY1);
+              glColor3f(1.0, 1.0, 1.0);
+              glVertex2i(-70+gfPyshkaX1, 58+gfPyshkaY1);
+         glEnd();
+		//Garmata
+        glBegin(GL_LINE_LOOP);                     
               glColor3f(0.0, 0.0, 0.0);
-              glVertex2i(-70, 30);
+              glVertex2i(-70+gfPyshkaX1, 30+gfPyshkaY1);
               glColor3f(0.0, 0.0, 0.0);
-              glVertex2i(200, 30);
+              glVertex2i(200+gfPyshkaX1, 30+gfPyshkaY1);
               glColor3f(0.0, 0.0, 0.0);
-              glVertex2i(200, 58);
+              glVertex2i(200+gfPyshkaX1, 58+gfPyshkaY1);
               glColor3f(0.0, 0.0, 0.0);
-              glVertex2i(-70, 58);
+              glVertex2i(-70+gfPyshkaX1, 58+gfPyshkaY1);
          glEnd();
 
          //koleso vid pushki 
                  glColor3f(0.0, 0.0, 0.0);                     
-         drawCircle(0, 0, 30,60);
+         drawCircle(0+gfPyshkaX1, 0+gfPyshkaY1, 30,60);
 }
 
 // dlya s4itivaniya s klavi void RotateFunk (int key, int x, int y)
@@ -160,7 +171,7 @@ void Draw()
         glEnd();
 		glPopMatrix();
 
-       
+     
 
                  //Pidloga
                  glBegin(GL_LINE_LOOP);
@@ -259,10 +270,8 @@ void Draw()
        glEnd();
 	   }
        
-	   		 //jadro
-   
-    glColor3f(0.0, 0.0, 0.0);                     
-    drawCircle(gfPosX3, gfPosY3, 14,60);
+	   			
+	
 
 	   //pidvis
 	   glPushMatrix();
@@ -285,16 +294,18 @@ void Draw()
 	   	   Garmata();
 		   glPopMatrix();
 		   gfRotZ -= gfDeltaZ;
-	   if(gfRotZ >= 90 || gfRotZ <= -35) //s klavi -45 pomenyat na -mrt (-45 - randomnii ugol povorota)
+	   if(gfRotZ >= 90 || gfRotZ <= -mrt) //s klavi -45 pomenyat na -mrt (-45 - randomnii ugol povorota)
 	   {
 			gfDeltaZ=0;
 	   }
 	  
 	  glPopMatrix(); 
-
-	   gfPosX3 += gfDeltaX3;
-	   gfPosY3 += gfDeltaY3;
-	  
+	  //animaci9 9dra
+	 if( gfRotZ >= 90 || gfRotZ <= -mrt )
+	 {
+	   gfPyshkaX += gfDeltaX1;
+	   gfPyshkaY += gfDeltaY1;
+	 }
 	   
 	   if(gfPosY >= 200 || gfPosY <= -200)
 	   {
@@ -306,26 +317,41 @@ void Draw()
 	   }
 	  glutPostRedisplay();
 	  glPopMatrix(); 
-	  
+	  //garmata pisla postrily ryxaetsa v livo
+	   if( gfRotZ >= 90 || gfRotZ <= -mrt )
+	 {
+		 gfPyshkaX1+=gfDeltaX4;
+		 gfPyshkaY1+=gfDeltaY4;
+	 }
+	     if( gfPyshkaX1 <= -200 )
+		 {
+			 gfDeltaX4=0;
+			 gfDeltaY4=0;
+		 }
+	     glutPostRedisplay();
+	  glPopMatrix(); 
+
 	  glPushMatrix();
-	  if(gfPosX3 >= 350 || gfPosX3 >= 335)
+	  if(gfPyshkaX >= 1275)
 	  {
-			gfDeltaY3=0;
-			gfDeltaX3=0;
+			if( gfPyshkaY >= 500 ||  gfPyshkaY>= 200 )
+		  { 
+			  gfDeltaX1=0;
+			  gfDeltaY1=0;
 
 	   glBegin(GL_QUADS);
                glColor3f(1.0, 1.0, 1.0);
                glVertex2i(300, 500);
                glColor3f(1.0, 1.0, 1.0);
-               glVertex2i(370, 500);
+               glVertex2i(371, 500);
                glColor3f(1.0, 1.0, 1.0);
-               glVertex2i(370, 200);
+               glVertex2i(371, 199);
                glColor3f(1.0, 1.0, 1.0);
-               glVertex2i(300, 200);
+               glVertex2i(300, 199);
        glEnd();
 	   gfPosY -= gfDeltaY;
 	   gfPosY2 -= gfDeltaY2;
-	  }
+			}}
 	  glPopMatrix();
 	  glutPostRedisplay();
 	
@@ -336,7 +362,6 @@ glutSwapBuffers();
 void Timer(int)
 {    
 	i--;
-
 
 	glutPostRedisplay();
 	glutTimerFunc(5, Timer, 0);
