@@ -1,10 +1,15 @@
-#include "glut.h"
+﻿#include "gl/glut.h"
 #include <cmath>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <cmath>
 #include <math.h>
 
+
+bool liana_hit = false;
+float ly=0;
+float dly=0;
+bool ball_hit = false;
 float drx2=0.5;
 float drx=0.5;
 float dry=0.5;
@@ -21,18 +26,22 @@ float gfPosY= 180;
 float gfPosY2= 180;
 float gfPosY3=-270;
 float gfPosX3=-550;
-float gfDeltaY=0.5;
-float gfDeltaY2=0.5;
+float gfDeltaY=3;
+float gfDeltaY2=3;
 float gfDeltaX3=0.3;
 float gfDeltaY3=0.2;
+float gfPosX5= 480;// (kusok perekladiny)
+float gfDeltaX5=1; // (kusok perekladiny)
+float gfPosY5= -459;// (kusok perekladiny)
+float gfDeltaY5=1.5; // (kusok perekladiny)
 float gfRotZ= 0;
-float gfDeltaZ=0.05;
+float gfDeltaZ=0.5;
 float gfx=285;
-float mrt=3; //kyt
+float mrt=13; //kyt
 float gfPyshkaX=185;
 float gfPyshkaY=44;
-float gfDeltaX1=cos(mrt*0.017);
-float gfDeltaY1=sin(mrt*0.017);
+float gfDeltaX1=cos(mrt*0.017)*5.2;
+float gfDeltaY1=sin(mrt*0.017)*5.2;
 float gfDeltaX4=-cos(mrt*0.017); //zmichenn9 v livo garmatu
 float gfPyshkaX1;
 float gfDeltaY4=sin(mrt*0.017); //zmichenn9 v livo garmatu
@@ -41,9 +50,9 @@ float gfrombX=0;
 float gfkytpovoroty=0;
 float gfdeltakytpovoroty=0.05;
 float gfPosX= 0;
-float gfDeltaX=0.15;
+float gfDeltaX=0.0;
 float angle1=80;
-float deltaangle=0.2;
+float deltaangle=0;
 float gfrombPosX= 75;
 float ZnachenX=0;
 
@@ -68,10 +77,11 @@ float ZnachenX=0;
  {
  
  //jadro
-   
+  if (!ball_hit && !liana_hit) {
  glColor3f(0.0, 0.0, 0.0);
  drawCircle( gfPyshkaX, gfPyshkaY, 14,60);
  glEnd();
+  }
         
  //kinec garmatu
                  
@@ -130,7 +140,7 @@ void Draw()
  glColor3f(0.0, 0.0, 0.0);
 
  //Opora
-                
+   if (!liana_hit) {
  glBegin(GL_QUADS);
  glColor3f(0.0, 1.0, 0.0);
  glVertex2i(680, -460);
@@ -141,22 +151,23 @@ void Draw()
  glColor3f(0.0, 1.0, 0.0);
  glVertex2i(680, 250);
  glEnd();
+   }
  
  //perekladina
 
  glBegin(GL_LINE_LOOP);
  glColor3f(0.0, 0.0, 0.0);
- glVertex2i(500, 250);
+ glVertex2i(500, 250-ly);
  glColor3f(0.0, 0.0, 0.0);
- glVertex2i(880, 250);
+ glVertex2i(880, 250-ly);
  glColor3f(0.0, 0.0, 0.0);
- glVertex2i(880, 270);
+ glVertex2i(880, 270-ly);
  glColor3f(0.0, 0.0, 0.0);
- glVertex2i(500, 270);
+ glVertex2i(500, 270-ly);
  glEnd();
       
  //punktir
- 
+ if (!liana_hit) {
  glEnable(GL_LINE_STIPPLE);
  glLineStipple(1,0x00FF);
  glBegin(GL_LINE_LOOP);
@@ -170,16 +181,37 @@ void Draw()
  glVertex2i(680, 250);
  glEnd();
  glDisable(GL_LINE_STIPPLE);
-  
+ }
  //kulka
  
  glColor3f(1.0, 0.0, 0.0);
- drawCircle(689, 321, 50,60);
+ drawCircle(689, 321-ly, 50,60);
+
+ if(gfPyshkaX>1450 && gfPyshkaX<1500 && gfPyshkaY>0 && gfPyshkaY<500 && mrt > 5 && mrt < 15 && !liana_hit)
+ {
+	 gfDeltaX1=0;
+	 gfDeltaY1=0;
+	 dly=10;
+	 liana_hit = true;
+ }
+
+ ly+=dly;
+
+ if(!liana_hit) {
+	 dly=0;
+ }
 
  //Romb
  if (mrt>5) { gfDeltaX = 0;
 			deltaangle = 0;
 			}
+
+ if(gfPyshkaX>570 && !ball_hit && mrt<5) {gfDeltaX = 0.5;
+ deltaangle = 0.2;
+ ball_hit = true;
+ gfDeltaX1=0;
+
+ }
 		
 			  glPushMatrix();
 			  glTranslatef(-gfPosX-80,-382,0);
@@ -199,6 +231,9 @@ void Draw()
 
 
 	   }
+	if(ly>700) {
+		dly=0;
+	}
 	if (hit) {
 		rx1-=drx;
 		ry1+=dry;
@@ -209,7 +244,7 @@ void Draw()
 	{
 		drx2=0;
 	}
-	if (ry1 > 800)
+	if (ry1 > 900)
 	{
 		drx = dry = 0;
 	}
@@ -332,11 +367,12 @@ void Draw()
                glVertex2i(350, 200);
        glEnd();
        glDisable(GL_LINE_STIPPLE);
-
+	   
+	   //1 kusok
          void Pidvis1();
          {
          glBegin(GL_QUADS);
-                          glColor3f(0.0, 0.0, 0.0);
+               glColor3f(0.0, 0.0, 0.0);
                glVertex2i(155, gfPosY2);
                glColor3f(0.0, 0.0, 0.0);
                glVertex2i(155, gfPosY2+20);
@@ -349,6 +385,7 @@ void Draw()
        glEnd();
          }
 
+		 //2kusok
          void Pidvis2();
          {
          glBegin(GL_QUADS);
@@ -401,14 +438,57 @@ void Draw()
          gfPyshkaX += gfDeltaX1;
          gfPyshkaY += gfDeltaY1;
          }
-        
+         //animatsiya perekladiny 
          if(gfPosY >= 200 || gfPosY <= -200)
          {
                         gfDeltaY=0;
          }
-         if(gfPosY2 >= 200 || gfPosY2 <= -460)
+         //animatsiya kusochkiv=)
+		 if(gfPosY2 >= 200 || gfPosY2 <= -459)
          {
                         gfDeltaY2=0;
+						glBegin(GL_QUADS);
+		                     glColor3f(1.0, 1.0, 1.0);
+							 glVertex2i(480, -439);
+							 glColor3f(1.0, 1.0, 1.0);
+						     glVertex2i(480, -459);
+							 glColor3f(1.0, 1.0, 1.0);
+							 glVertex2i(520, -459);
+							 glColor3f(1.0, 1.0, 1.0);
+						     glVertex2i(520, -439);
+						glEnd();	
+						glBegin(GL_QUADS);
+							 glColor3f(0.0, 0.0, 0.0);
+							 glVertex2i(gfPosX5, gfPosY5+20);
+						     glColor3f(0.0, 0.0, 0.0);
+						     glVertex2i(gfPosX5, gfPosY5);
+						     glColor3f(0.0, 0.0, 0.0);
+							 glVertex2i(gfPosX5+40, gfPosY5);
+						     glColor3f(0.0, 0.0, 0.0);
+							 glVertex2i(gfPosX5+40, gfPosY5+20);
+						glEnd();
+						gfPosX5+=gfDeltaX5;
+				        gfPosY5+=gfDeltaY5;
+						if(gfPosY5 <= -459 || gfPosY5 >= -400)
+				            {
+					            gfDeltaY5=-gfDeltaY5;
+				            }
+						if(gfPosX5 <= 450 || gfPosX5 >= 639)
+				            {
+					            gfDeltaY5=0;
+					            gfDeltaX5=0;
+					            glBegin(GL_QUADS);
+		                             glColor3f(1.0, 1.0, 1.0);
+                                     glVertex2i(639, -459);
+                                     glColor3f(1.0, 1.0, 1.0);
+                                     glVertex2i(679, -459);
+                                     glColor3f(1.0, 1.0, 1.0);
+                                     glVertex2i(679, -459+21);
+                                     glColor3f(1.0, 1.0, 1.0);
+                                     glVertex2i(639, -459+21);
+	                            glEnd();
+				
+				            }
          }
          glutPostRedisplay();
          glPopMatrix();
@@ -427,10 +507,10 @@ void Draw()
          glPopMatrix();
 
          glPushMatrix();
-         if(gfPyshkaX >= 1275)
+         if(gfPyshkaX >= 1275 && gfPyshkaX <= 1285 && mrt>=17 )
          {
-                        if( gfPyshkaY >= 500 || gfPyshkaY>= 200 )
-                 {
+                       
+                 
                          gfDeltaX1=0;
                          gfDeltaY1=0;
 
@@ -446,7 +526,7 @@ void Draw()
        glEnd();
          gfPosY -= gfDeltaY;
          gfPosY2 -= gfDeltaY2;
-                        }}
+                        }
          glPopMatrix();
 
          glutPostRedisplay();
