@@ -565,8 +565,7 @@ int main(int argc, char** argv)
         glutInitWindowSize(WinWid, WinHei);
         glutInitWindowPosition(0,0);
         glutCreateWindow("1ZAVDANNYA");
-// dlya s4itivaniya s klavi                 glutSpecialFunc(RotateFunk);
-                glutTimerFunc(2000, Timer, 1000);
+        glutTimerFunc(2000, Timer, 1000);
         //registration
         glutDisplayFunc(Draw);// painting
         Initialize();
